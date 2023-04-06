@@ -49,6 +49,8 @@ static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
 
 /* 自定义 scratchpad instance */
 static const char scratchpadname[] = "scratchpad";
+static const char *lightup[]  = {"xbacklight", "-inc", "10", NULL};                             // 增加10点亮度：xbacklight -inc 10
+static const char *lightdown[]  = {"xbacklight", "-dec", "5", NULL};                            // 减少5点亮度：xbacklight -dec 5
 
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
@@ -201,6 +203,10 @@ static Key keys[] = {
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -c -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
 
+    /*调节亮度*/
+    { Mod1Mask,            XK_Down,   spawn, {.v = lightdown } },             // Alt+右方向键,减少亮度
+    { Mod1Mask,            XK_Up,     spawn, {.v = lightup } },               // Alt+左方向键,增加亮度
+	    
     /* super key : 跳转到对应tag (可附加一条命令 若目标目录无窗口，则执行该命令) */
     /* super shift key : 将聚焦窗口移动到对应tag */
     /* key tag cmd */
