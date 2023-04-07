@@ -46,15 +46,8 @@ update() {
     icon=" $charge_icon$bat_icon "
     text=" $bat_text% "
 
-    BatteryStatus=$(cat /sys/class/power_supply/BAT*/status)
-    if [[ $BatteryStatus == D* || $BatteryStatus == F* ]];then
-        BatteryStatus='--'
-    else
-        BatteryStatus='⚡'
-    fi
-
     sed -i '/^export '$this'=.*$/d' $tempfile
-    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon""$BatteryStatus""$text_color" "$text" >> $tempfile
+    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text" >> $tempfile
 }
 
 notify() {
