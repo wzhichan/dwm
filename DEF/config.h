@@ -44,8 +44,8 @@ static const unsigned int alphas[][3]    = {          /* 透明度设置 ColFg, 
 };
 
 /* 自定义脚本位置 */
-static const char *autostartscript = "$DWM/autostart.sh";
-static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
+static const char *autostartscript = "/home/$USERNAME/autostart.sh";
+static const char *statusbarscript = "/home/$USERNAME/statusbar/statusbar.sh";
 
 /* 自定义 scratchpad instance */
 static const char scratchpadname[] = "scratchpad";
@@ -196,16 +196,16 @@ static Key keys[] = {
     { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
     { MODKEY,              XK_F1,     spawn, SHCMD("killall pcmanfm || pcmanfm") },                             /* super F1         | 打开/关闭pcmanfm       */
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -show run") },                                         /* super d          | rofi: 执行run          */
-    { MODKEY,              XK_p,      spawn, SHCMD("$DWM/DEF/rofi.sh") },                                       /* super p          | rofi: 执行自定义脚本   */
-    { MODKEY,              XK_n,      spawn, SHCMD("$DWM/DEF/blurlock.sh") },                                   /* super n          | 锁定屏幕               */
-    { MODKEY|ShiftMask,    XK_Up,     spawn, SHCMD("$DWM/DEF/set_vol.sh up") },                                 /* super shift up   | 音量加                 */
-    { MODKEY|ShiftMask,    XK_Down,   spawn, SHCMD("$DWM/DEF/set_vol.sh down") },                               /* super shift down | 音量减                 */
+    { MODKEY,              XK_p,      spawn, SHCMD("/home/$USERNAME/DEF/rofi.sh") },                                       /* super p          | rofi: 执行自定义脚本   */
+    { MODKEY,              XK_n,      spawn, SHCMD("/home/$USERNAME/DEF/blurlock.sh") },                                   /* super n          | 锁定屏幕               */
+    { MODKEY|ShiftMask,    XK_Up,     spawn, SHCMD("/home/$USERNAME/DEF/set_vol.sh up") },                                 /* super shift up   | 音量加                 */
+    { MODKEY|ShiftMask,    XK_Down,   spawn, SHCMD("/home/$USERNAME/DEF/set_vol.sh down") },                               /* super shift down | 音量减                 */
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -c -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
 
     /*调节亮度*/
-    { Mod1Mask,            XK_Down,   spawn, {.v = lightdown } },             // Alt+右方向键,减少亮度
-    { Mod1Mask,            XK_Up,     spawn, {.v = lightup } },               // Alt+左方向键,增加亮度
+    { Mod1Mask,            XK_Down,   spawn, {.v = lightdown } },             // Alt+方向键下,减少亮度
+    { Mod1Mask,            XK_Up,     spawn, {.v = lightup } },               // Alt+方向键上,增加亮度
 	    
     /* super key : 跳转到对应tag (可附加一条命令 若目标目录无窗口，则执行该命令) */
     /* super shift key : 将聚焦窗口移动到对应tag */
@@ -214,7 +214,7 @@ static Key keys[] = {
     TAGKEYS(XK_2, 1, 0)
     TAGKEYS(XK_3, 2, 0)
     TAGKEYS(XK_9, 3, "obs")
-    TAGKEYS(XK_c, 4, "google-chrome-stable")
+    TAGKEYS(XK_c, 4, "microsoft-edge-stable")
     TAGKEYS(XK_m, 5, "~/scripts/music_player.sh")
     TAGKEYS(XK_0, 6, "linuxqq")
     TAGKEYS(XK_w, 7, "/opt/apps/com.qq.weixin.deepin/files/run.sh")
