@@ -22,11 +22,11 @@ fi
 
 update() {
     wifi_icon="褐"
-    wifi_text=$(nmcli | grep "$wifi_grep_keyword" | sed "s/$wifi_grep_keyword//" | awk '{print $2}' | paste -d " " -s)
+    wifi_text=$(nmcli | grep "$wifi_grep_keyword" | awk -F "$wifi_grep_keyword" '{print $2}')
     [ "$wifi_text" = "" ] && wifi_text=$wifi_disconnected
 
     icon=" $wifi_icon "
-    text=" $wifi_text "
+    text="$wifi_text "
 
     sed -i '/^export '$this'=.*$/d' $tempfile
     printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text" >> $tempfile
@@ -48,7 +48,7 @@ call_nm() {
 click() {
     case "$1" in
         L) notify ;;
-        R) call_nm ;;
+        R) setsid call_nm ;;
     esac
 }
 
