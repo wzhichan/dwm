@@ -203,9 +203,12 @@ static Key keys[] = {
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -c -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
 
+    { 0,                   XF86XK_AudioRaiseVolume,     spawn, SHCMD("~/workspace/dwm/DEF/set_vol.sh up") },                                 /* super shift up   | 音量加                 */
+    { 0,                    XF86XK_AudioLowerVolume,   spawn, SHCMD("~/workspace/dwm/DEF/set_vol.sh down") },                               /* super shift down | 音量减                 */
+
     /*调节亮度*/
-    { Mod1Mask,            XK_Down,   spawn, {.v = lightdown } },             // Alt+方向键下,减少亮度
-    { Mod1Mask,            XK_Up,     spawn, {.v = lightup } },               // Alt+方向键上,增加亮度
+    { Mod1Mask,            XK_Down,   spawn, {.v = lightdown } },             // Alt+右方向键,减少亮度
+    { Mod1Mask,            XK_Up,     spawn, {.v = lightup } },               // Alt+左方向键,增加亮度
 	    
     /* super key : 跳转到对应tag (可附加一条命令 若目标目录无窗口，则执行该命令) */
     /* super shift key : 将聚焦窗口移动到对应tag */
